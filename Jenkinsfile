@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // checkout scm
+                 git branch: 'main', url: 'https://github.com/vivek-tv-test/sample_sf.git'
             }
         }
 
@@ -13,6 +14,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'salesforce-creds', passwordVariable: 'SFDC_PASSWORD', usernameVariable: 'SFDC_USERNAME')]) {
                         sh '''
+                      //  sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
                         sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
                         '''
                     }
