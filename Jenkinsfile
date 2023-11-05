@@ -4,8 +4,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // checkout scm
                  // git branch: 'main', url: 'https://github.com/vivek-tv-test/sample_sf.git'
+                  checkout([
+                    $class: 'GitSCM',
+                    branches: [
+                        [name: 'refs/heads/*']  // Fetch all branches
+                    ],
+                    userRemoteConfigs: [
+                        [url: 'https://github.com/vivek-tv-test/sample_sf.git']
+                    ]
+                ])
             }
         }
 
