@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // checkout scm
-                 git branch: 'main', url: 'https://github.com/vivek-tv-test/sample_sf.git'
+                checkout scm
+                 // git branch: 'main', url: 'https://github.com/vivek-tv-test/sample_sf.git'
             }
         }
 
